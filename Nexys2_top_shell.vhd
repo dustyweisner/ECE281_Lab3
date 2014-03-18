@@ -93,16 +93,16 @@ signal ClockBus_sig : STD_LOGIC_VECTOR (26 downto 0);
 --------------------------------------------------------------------------------------
 
 --_______________MOORE PART_____________
---COMPONENT MooreElevatorController_Shell
---	PORT(
---		clk : IN std_logic;
---		reset : IN std_logic;
---		stop : IN std_logic;
---		up_down : IN std_logic;          
---		floor : OUT std_logic_vector(3 downto 0)
---		);
---	END COMPONENT;
---	
+COMPONENT MooreElevatorController_Shell
+	PORT(
+		clk : IN std_logic;
+		reset : IN std_logic;
+		stop : IN std_logic;
+		up_down : IN std_logic;          
+		floor : OUT std_logic_vector(3 downto 0)
+		);
+	END COMPONENT;
+	
 --_______________MEALY PART_____________
 COMPONENT MealyElevatorController_Shell
 	PORT(
@@ -114,6 +114,18 @@ COMPONENT MealyElevatorController_Shell
 		nextfloor : OUT std_logic_vector(3 downto 0)
 		);
 	END COMPONENT;
+
+--_______________Prime# PART_____________
+--COMPONENT MooreElevatorController_Shell
+--	PORT(
+--		clk : IN std_logic;
+--		reset : IN std_logic;
+--		stop : IN std_logic;
+--		up_down : IN std_logic;          
+--		floor : OUT std_logic_vector(3 downto 0);
+--		overflow : OUT std_logic_vector(3 downto 0)
+--		);
+--	END COMPONENT;
 
 --------------------------------------------------------------------------------------
 --Insert any required signal declarations below
@@ -208,6 +220,16 @@ Inst_MealyElevatorController_Shell: MealyElevatorController_Shell PORT MAP(
 		floor => nibble0,
 		nextfloor => nibble1
 	);
+
+--________________Prime# PART____________________________
+--Inst_MooreElevatorController_Shell: MooreElevatorController_Shell PORT MAP(
+--		clk => ClockBus_sig(25),
+--		reset => btn(3),
+--		stop => btn(0),
+--		up_down => btn(1),
+--		floor => nibble0,
+--		overflow => nibble1
+--	);
 
 end Behavioral;
 
